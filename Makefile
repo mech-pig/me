@@ -1,4 +1,4 @@
-.PHONY: help install-dev dev
+.PHONY: help install-dev test dev ci build publish
 
 .DEFAULT_GOAL := help
 SHELL = bash
@@ -10,5 +10,17 @@ help::
 install-dev::
 	npm i
 
+test::
+		npm test
+
 dev::
 	gatsby develop
+
+ci::
+	npm ci --only=production
+
+build::
+	npx gatsby build --prefix-paths
+
+publish::
+	npx gh-pages --git git --dist public --message "[skip ci] release" --dotfiles

@@ -1,0 +1,63 @@
+version: 2
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - publish:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.15
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - node-v1-{{ .Branch }}-
+            - node-v1-
+      - run:
+          name: Install dependencies
+          command: make ci
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: Run tests
+          command: make test
+      - run:
+          name: Build bundle
+          command: make build
+      - persist_to_workspace:
+          root: public
+          paths: "*"
+  publish:
+    docker:
+      - image: circleci/node:10.15
+    steps:
+      - checkout
+      - attach_workspace:
+          at: public
+      - run:
+          name: Disable jekyll builds
+          command: touch public/.nojekyll
+      - run:
+          name: Configure git user
+          command: |
+            git config user.email "circleci@mechpig.me"
+            git config user.name "circleci"
+      - add_ssh_keys:
+          fingerprints:
+            - b6:ac:78:e7:c9:1e:56:ce:8c:3f:c4:c0:fa:b4:c8:3a
+      - run:
+          name: Publish to gh-pages branch
+          command: make publish

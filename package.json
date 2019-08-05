@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "mechpig.me",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Personal site of mechpig",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "mech-pig <7295856+mech-pig@users.noreply.github.com>",
   "dependencies": {
     "gatsby": "^2.13.39",
     "gatsby-image": "^2.2.6",
@@ -13,6 +13,7 @@
     "gatsby-plugin-sharp": "^2.2.9",
     "gatsby-source-filesystem": "^2.1.6",
     "gatsby-transformer-sharp": "^2.2.4",
+    "gh-pages": "^2.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -35,9 +36,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/mech-pig/me"
   }
 }
