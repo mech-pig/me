@@ -7,10 +7,15 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 
+import "../style.scss"
+import { Container, Hero } from "rbx"
 
-const Layout = ({ children }) => {
+import SEO from "./seo"
+import Footer from "./footer"
+
+const Layout = ({ title, children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -23,21 +28,22 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <div style={{ margin: `3rem auto`, maxWidth: 650, padding: `0 1rem` }}>
-      <header style={{ marginBottom: `1.5rem` }}>
-        <Link to="/" style={{ textShadow: `none` }}>
-          <h3 style={{ display: `inline` }}>mechpig.me</h3>
-        </Link>
-      </header>
-      <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()} {data.site.siteMetadata.author}
-      </footer>
-    </div>
+    <>
+      <SEO title={title} />
+      <Hero color="primary" size="fullheight">
+        <Hero.Body>
+          <Container>{children}</Container>
+        </Hero.Body>
+        <Hero.Foot>
+          <Footer author={data.site.siteMetadata.author} />
+        </Hero.Foot>
+      </Hero>
+    </>
   )
 }
 
 Layout.propTypes = {
+  title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }
 
