@@ -15,7 +15,7 @@ const IndexPage = () => (
     </Title>
     <Content>
       <p>I'm a software developer living in Milan, Italy.</p>
-      <p>A lot of my job consists of designing and building web APIs and helping others doing the same.
+      <p>A large part of my job consists of designing and building web APIs and helping others to do the same.
       I work mainly in Python and Node.js, but I have an interest in programming languages and software development at large.
       I always try to write clean, modular and concise code.</p>
       <p>
