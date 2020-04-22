@@ -3,6 +3,10 @@ module.exports = {
     title: `mechpig.me`,
     description: `mechpig's personal site`,
     author: `Matteo Avellina`,
+    socials: {
+      github: 'mech-pig',
+      linkedin: 'matteo-avellina',
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

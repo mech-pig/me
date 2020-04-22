@@ -21,7 +21,11 @@ const Layout = ({ title, children }) => {
       site {
         siteMetadata {
           title,
-          author
+          author,
+          socials {
+            github,
+            linkedin
+          }
         }
       }
     }
@@ -35,7 +39,13 @@ const Layout = ({ title, children }) => {
           <Container>{children}</Container>
         </Hero.Body>
         <Hero.Foot>
-          <Footer author={data.site.siteMetadata.author} />
+          <Footer
+            author={data.site.siteMetadata.author}
+            socials={{
+              githubName: data.site.siteMetadata.socials.github,
+              linkedinName: data.site.siteMetadata.socials.linkedin,
+            }}
+          />
         </Hero.Foot>
       </Hero>
     </>
